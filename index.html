@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Paiement — Jessykey</title>
+
 <style>
   :root{
     --ink:#1c1f26;
@@ -14,11 +15,16 @@
     --card:#ffffff;
     --line:#dcd7cb;
     --error:#b3452c;
+    --whatsapp:#25D366;
   }
-  *{box-sizing:border-box;}
+
+  *{
+    box-sizing:border-box;
+  }
+
   body{
     margin:0;
-    font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
     background:var(--paper);
     color:var(--ink);
     display:flex;
@@ -26,44 +32,55 @@
     padding:32px 16px;
     min-height:100vh;
   }
+
   .wrap{
     width:100%;
     max-width:460px;
   }
+
   .brand{
     text-align:center;
     margin-bottom:24px;
   }
+
   .brand .mark{
-    width:48px;height:48px;
+    width:48px;
+    height:48px;
     border-radius:12px;
     background:var(--accent);
     color:#fff;
-    display:flex;align-items:center;justify-content:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     font-weight:700;
     font-size:20px;
     margin:0 auto 12px;
-    letter-spacing:0.5px;
+    letter-spacing:.5px;
   }
+
   .brand h1{
     font-size:20px;
     margin:0;
     font-weight:600;
   }
+
   .brand p{
     margin:4px 0 0;
     color:#6b6a63;
     font-size:14px;
   }
+
   form{
     background:var(--card);
     border:1px solid var(--line);
     border-radius:16px;
     padding:28px 24px;
   }
+
   .field{
     margin-bottom:18px;
   }
+
   label{
     display:block;
     font-size:13px;
@@ -71,7 +88,10 @@
     margin-bottom:6px;
     color:#3a3a35;
   }
-  input, select, textarea{
+
+  input,
+  select,
+  textarea{
     width:100%;
     padding:11px 12px;
     border:1px solid var(--line);
@@ -81,20 +101,32 @@
     color:var(--ink);
     font-family:inherit;
   }
-  input:focus, select:focus, textarea:focus{
+
+  input:focus,
+  select:focus,
+  textarea:focus{
     outline:2px solid var(--accent);
     outline-offset:1px;
     border-color:var(--accent);
   }
-  textarea{resize:vertical;min-height:70px;}
+
+  textarea{
+    resize:vertical;
+    min-height:70px;
+  }
+
   .row2{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:12px;
   }
+
   .card-icons{
-    display:flex;gap:8px;margin-top:6px;
+    display:flex;
+    gap:8px;
+    margin-top:6px;
   }
+
   .card-icons span{
     font-size:11px;
     padding:3px 8px;
@@ -103,6 +135,7 @@
     color:var(--accent);
     font-weight:600;
   }
+
   .amount-box{
     background:var(--accent-light);
     border-radius:10px;
@@ -112,14 +145,29 @@
     justify-content:space-between;
     align-items:center;
   }
-  .amount-box span{font-size:13px;color:#3a5148;font-weight:600;}
-  .amount-box strong{font-size:20px;color:var(--accent);}
+
+  .amount-box span{
+    font-size:13px;
+    color:#3a5148;
+    font-weight:600;
+  }
+
+  .amount-box strong{
+    font-size:20px;
+    color:var(--accent);
+  }
+
+  .buttons{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
   button{
     width:100%;
     padding:14px;
     border:none;
     border-radius:10px;
-    background:var(--accent);
     color:#fff;
     font-size:16px;
     font-weight:600;
@@ -128,10 +176,61 @@
     align-items:center;
     justify-content:center;
     gap:8px;
-    transition:opacity 0.15s;
+    transition:opacity .15s;
   }
-  button:hover{opacity:0.92;}
-  button:active{transform:scale(0.99);}
+
+  button:hover{
+    opacity:.92;
+  }
+
+  button:active{
+    transform:scale(.99);
+  }
+
+  .btn-sheet{
+    background:var(--accent);
+  }
+
+  .btn-whatsapp{
+    background:var(--whatsapp);
+  }
+
+  .status{
+    text-align:center;
+    font-size:13px;
+    margin-top:12px;
+    display:none;
+    line-height:1.5;
+  }
+
+  .status.show{
+    display:block;
+  }
+
+  .status.success{
+    color:var(--accent);
+  }
+
+  .status.error{
+    color:var(--error);
+  }
+
+  .error-msg{
+    color:var(--error);
+    font-size:12px;
+    margin-top:4px;
+    display:none;
+  }
+
+  .field.invalid input,
+  .field.invalid select{
+    border-color:var(--error);
+  }
+
+  .field.invalid .error-msg{
+    display:block;
+  }
+
   .note{
     text-align:center;
     font-size:12px;
@@ -139,21 +238,7 @@
     margin-top:14px;
     line-height:1.5;
   }
-  .error-msg{
-    color:var(--error);
-    font-size:12px;
-    margin-top:4px;
-    display:none;
-  }
-  .field.invalid input, .field.invalid select{
-    border-color:var(--error);
-  }
-  .field.invalid .error-msg{display:block;}
-  @media (max-width:420px){
-    .row2{grid-template-columns:1fr;}
-  }
 
-  /* --- Carte météo --- */
   .card{
     background:var(--card);
     border:1px solid var(--line);
@@ -161,6 +246,7 @@
     padding:24px;
     margin-top:20px;
   }
+
   .card h2{
     font-size:19px;
     margin:0 0 10px;
@@ -168,11 +254,13 @@
     align-items:center;
     gap:8px;
   }
+
   .card p{
     margin:0 0 16px;
     color:#5c5b53;
     font-size:14px;
   }
+
   select.city-select{
     width:100%;
     padding:11px 12px;
@@ -184,6 +272,7 @@
     font-family:inherit;
     margin-bottom:14px;
   }
+
   .btn-weather{
     width:100%;
     padding:14px;
@@ -199,7 +288,11 @@
     justify-content:center;
     gap:8px;
   }
-  .btn-weather:hover{opacity:0.92;}
+
+  .btn-weather:hover{
+    opacity:.92;
+  }
+
   .weather-result{
     margin-top:14px;
     padding:14px;
@@ -208,230 +301,908 @@
     font-size:14px;
     display:none;
   }
-  .weather-result.show{display:block;}
+
+  .weather-result.show{
+    display:block;
+  }
+
+  @media(max-width:420px){
+    .row2{
+      grid-template-columns:1fr;
+    }
+  }
 </style>
 </head>
+
 <body>
+
 <div class="wrap">
+
   <div class="brand">
-    <div class="mark">JK</div>
-    <h1>Formulaire de paiement</h1>
-    <p>Remplissez vos informations — la demande sera envoyée sur WhatsApp</p>
+
+    <div class="mark">
+      JK
+    </div>
+
+    <h1>
+      Formulaire de paiement
+    </h1>
+
+    <p>
+      Remplissez vos informations — la demande sera envoyée sur WhatsApp
+    </p>
+
   </div>
+
 
   <form id="payForm" novalidate>
 
     <div class="field" id="f-name">
-      <label for="name">Nom complet</label>
-      <input type="text" id="name" placeholder="Ex : Jean Nkurunziza" required>
-      <div class="error-msg">Le nom est requis.</div>
+
+      <label for="name">
+        Nom complet
+      </label>
+
+      <input
+        type="text"
+        id="name"
+        placeholder="Ex : Jean Nkurunziza"
+        required
+      >
+
+      <div class="error-msg">
+        Le nom est requis.
+      </div>
+
     </div>
 
+
     <div class="row2">
+
       <div class="field" id="f-phone">
-        <label for="phone">Téléphone</label>
-        <input type="tel" id="phone" placeholder="79 xx xx xx" required>
-        <div class="error-msg">Numéro requis.</div>
+
+        <label for="phone">
+          Téléphone
+        </label>
+
+        <input
+          type="tel"
+          id="phone"
+          placeholder="79 xx xx xx"
+          required
+        >
+
+        <div class="error-msg">
+          Numéro requis.
+        </div>
+
       </div>
+
+
       <div class="field" id="f-amount">
-        <label for="amount">Montant (BIF)</label>
-        <input type="number" id="amount" placeholder="50000" min="1" required>
-        <div class="error-msg">Montant requis.</div>
+
+        <label for="amount">
+          Montant (BIF)
+        </label>
+
+        <input
+          type="number"
+          id="amount"
+          placeholder="50000"
+          min="1"
+          required
+        >
+
+        <div class="error-msg">
+          Montant requis.
+        </div>
+
       </div>
+
     </div>
+
 
     <div class="field" id="f-product">
-      <label for="product">Produit / Service</label>
-      <input type="text" id="product" placeholder="Ex : Abonnement, commande..." required>
-      <div class="error-msg">Ce champ est requis.</div>
-    </div>
 
-    <div class="field">
-      <label for="cardname">Nom sur la carte</label>
-      <input type="text" id="cardname" placeholder="Comme indiqué sur la carte" autocomplete="cc-name">
-    </div>
+      <label for="product">
+        Produit / Service
+      </label>
 
-    <div class="field">
-      <label for="cardnum">Numéro de carte</label>
-      <input type="text" id="cardnum" inputmode="numeric" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" autocomplete="cc-number">
-      <div class="card-icons">
-        <span>VISA</span><span>MASTERCARD</span>
+      <input
+        type="text"
+        id="product"
+        placeholder="Ex : Abonnement, commande..."
+        required
+      >
+
+      <div class="error-msg">
+        Ce champ est requis.
       </div>
+
     </div>
+
+
+    <div class="field">
+
+      <label for="cardname">
+        Nom sur la carte
+      </label>
+
+      <input
+        type="text"
+        id="cardname"
+        placeholder="Comme indiqué sur la carte"
+        autocomplete="cc-name"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label for="cardnum">
+        Numéro de carte
+      </label>
+
+      <input
+        type="text"
+        id="cardnum"
+        inputmode="numeric"
+        placeholder="XXXX XXXX XXXX XXXX"
+        maxlength="19"
+        autocomplete="cc-number"
+      >
+
+      <div class="card-icons">
+        <span>VISA</span>
+        <span>MASTERCARD</span>
+      </div>
+
+    </div>
+
 
     <div class="row2">
+
       <div class="field">
-        <label for="expiry">Expiration</label>
-        <input type="text" id="expiry" placeholder="MM/AA" maxlength="5" autocomplete="cc-exp">
+
+        <label for="expiry">
+          Expiration
+        </label>
+
+        <input
+          type="text"
+          id="expiry"
+          placeholder="MM/AA"
+          maxlength="5"
+          autocomplete="cc-exp"
+        >
+
       </div>
+
+
       <div class="field">
-        <label for="cvv">CVV</label>
-        <input type="text" id="cvv" inputmode="numeric" placeholder="123" maxlength="4" autocomplete="cc-csc">
+
+        <label for="cvv">
+          CVV
+        </label>
+
+        <input
+          type="text"
+          id="cvv"
+          inputmode="numeric"
+          placeholder="123"
+          maxlength="4"
+          autocomplete="cc-csc"
+        >
+
       </div>
+
     </div>
+
 
     <div class="field">
-      <label for="notes">Message (optionnel)</label>
-      <textarea id="notes" placeholder="Précisions sur votre commande..."></textarea>
+
+      <label for="notes">
+        Message (optionnel)
+      </label>
+
+      <textarea
+        id="notes"
+        placeholder="Précisions sur votre commande..."
+      ></textarea>
+
     </div>
+
 
     <div class="amount-box">
-      <span>Total à payer</span>
-      <strong id="totalDisplay">0 BIF</strong>
+
+      <span>
+        Total à payer
+      </span>
+
+      <strong id="totalDisplay">
+        0 BIF
+      </strong>
+
     </div>
 
-    <button type="submit">
-      Envoyer la demande sur WhatsApp
-    </button>
+
+    <!-- DEUX BOUTONS -->
+
+    <div class="buttons">
+
+      <button
+        type="button"
+        class="btn-sheet"
+        id="sheetBtn"
+      >
+        Enregistrer
+      </button>
+
+      <button
+        type="button"
+        class="btn-whatsapp"
+        id="whatsappBtn"
+      >
+        💬 Envoyer sur WhatsApp
+      </button>
+
+    </div>
+
+
+    <div
+      id="status"
+      class="status"
+    ></div>
+
 
     <p class="note">
       ⚠️ Ce formulaire n'effectue aucun débit automatique.<br>
-      Vos informations sont envoyées par message WhatsApp pour confirmation manuelle du paiement.
+      Les informations peuvent être enregistrées dans Google Sheets
+      ou envoyées sur WhatsApp.
     </p>
+
   </form>
 
+
+  <!-- METEO -->
+
   <div class="card">
-    <h2>⛅ Consulter la météo</h2>
-    <p>Choisissez une ville</p>
-    <select class="city-select" id="citySelect">
-      <option value="">Sélectionnez une ville</option>
-      <option value="Bujumbura">Bujumbura</option>
-      <option value="Gitega">Gitega</option>
-      <option value="Ngozi">Ngozi</option>
-      <option value="Rumonge">Rumonge</option>
-      <option value="Kayanza">Kayanza</option>
+
+    <h2>
+      ⛅ Consulter la météo
+    </h2>
+
+    <p>
+      Choisissez une ville
+    </p>
+
+    <select
+      class="city-select"
+      id="citySelect"
+    >
+
+      <option value="">
+        Sélectionnez une ville
+      </option>
+
+      <option value="Bujumbura">
+        Bujumbura
+      </option>
+
+      <option value="Gitega">
+        Gitega
+      </option>
+
+      <option value="Ngozi">
+        Ngozi
+      </option>
+
+      <option value="Rumonge">
+        Rumonge
+      </option>
+
+      <option value="Kayanza">
+        Kayanza
+      </option>
+
     </select>
-    <button type="button" class="btn-weather" id="weatherBtn">☀️ Voir la météo</button>
-    <div class="weather-result" id="weatherResult"></div>
+
+
+    <button
+      type="button"
+      class="btn-weather"
+      id="weatherBtn"
+    >
+      ☀️ Voir la météo
+    </button>
+
+
+    <div
+      class="weather-result"
+      id="weatherResult"
+    ></div>
+
   </div>
+
 </div>
 
+
 <script>
-  const WHATSAPP_NUMBER = "25777182010"; // format international, sans + ni espaces
 
-  const form = document.getElementById('payForm');
-  const amountInput = document.getElementById('amount');
-  const totalDisplay = document.getElementById('totalDisplay');
-  const expiryInput = document.getElementById('expiry');
-  const cardnumInput = document.getElementById('cardnum');
+  // =====================================================
+  // CONFIGURATION GOOGLE SHEETS
+  // =====================================================
 
-  amountInput.addEventListener('input', () => {
-    const val = amountInput.value ? Number(amountInput.value).toLocaleString('fr-FR') : "0";
-    totalDisplay.textContent = val + " BIF";
-  });
+  const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbxzKNK3oKfXzKOImRrezW5IzTclxR5Nkjeai8-bNWeHcon7Fz_vtOH7rL7aHynkxCVD/exec";
 
-  expiryInput.addEventListener('input', () => {
-    let v = expiryInput.value.replace(/\D/g,'').slice(0,4);
-    if(v.length >= 3){ v = v.slice(0,2) + '/' + v.slice(2); }
-    expiryInput.value = v;
-  });
 
-  cardnumInput.addEventListener('input', () => {
-    let v = cardnumInput.value.replace(/\D/g,'').slice(0,16);
-    v = v.replace(/(.{4})/g,'$1 ').trim();
-    cardnumInput.value = v;
-  });
+  // =====================================================
+  // CONFIGURATION WHATSAPP
+  // =====================================================
 
-  function setError(fieldId, show){
-    const el = document.getElementById(fieldId);
+  const WHATSAPP_NUMBER =
+    "25777182010";
+
+
+  // =====================================================
+  // ELEMENTS
+  // =====================================================
+
+  const form =
+    document.getElementById("payForm");
+
+  const amountInput =
+    document.getElementById("amount");
+
+  const totalDisplay =
+    document.getElementById("totalDisplay");
+
+  const expiryInput =
+    document.getElementById("expiry");
+
+  const cardnumInput =
+    document.getElementById("cardnum");
+
+  const sheetBtn =
+    document.getElementById("sheetBtn");
+
+  const whatsappBtn =
+    document.getElementById("whatsappBtn");
+
+  const status =
+    document.getElementById("status");
+
+
+  // =====================================================
+  // TOTAL
+  // =====================================================
+
+  amountInput.addEventListener(
+    "input",
+    function(){
+
+      const val =
+        amountInput.value
+          ? Number(
+              amountInput.value
+            ).toLocaleString("fr-FR")
+          : "0";
+
+      totalDisplay.textContent =
+        val + " BIF";
+
+    }
+  );
+
+
+  // =====================================================
+  // EXPIRATION
+  // =====================================================
+
+  expiryInput.addEventListener(
+    "input",
+    function(){
+
+      let v =
+        expiryInput.value
+          .replace(/\D/g,"")
+          .slice(0,4);
+
+      if(v.length >= 3){
+
+        v =
+          v.slice(0,2) +
+          "/" +
+          v.slice(2);
+
+      }
+
+      expiryInput.value = v;
+
+    }
+  );
+
+
+  // =====================================================
+  // NUMERO CARTE
+  // =====================================================
+
+  cardnumInput.addEventListener(
+    "input",
+    function(){
+
+      let v =
+        cardnumInput.value
+          .replace(/\D/g,"")
+          .slice(0,16);
+
+      v =
+        v
+          .replace(/(.{4})/g,"$1 ")
+          .trim();
+
+      cardnumInput.value = v;
+
+    }
+  );
+
+
+  // =====================================================
+  // ERREURS
+  // =====================================================
+
+  function setError(
+    fieldId,
+    show
+  ){
+
+    const el =
+      document.getElementById(
+        fieldId
+      );
+
     if(!el) return;
-    el.classList.toggle('invalid', show);
+
+    el.classList.toggle(
+      "invalid",
+      show
+    );
+
   }
 
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
 
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const amount = amountInput.value.trim();
-    const product = document.getElementById('product').value.trim();
-    const cardname = document.getElementById('cardname').value.trim();
-    const cardnum = cardnumInput.value.trim();
-    const expiry = expiryInput.value.trim();
-    const notes = document.getElementById('notes').value.trim();
+  // =====================================================
+  // RECUPERER LES DONNEES
+  // =====================================================
+
+  function getFormData(){
+
+    const name =
+      document.getElementById("name")
+        .value
+        .trim();
+
+    const phone =
+      document.getElementById("phone")
+        .value
+        .trim();
+
+    const amount =
+      amountInput.value
+        .trim();
+
+    const product =
+      document.getElementById("product")
+        .value
+        .trim();
+
+    const cardname =
+      document.getElementById("cardname")
+        .value
+        .trim();
+
+    const cardnum =
+      cardnumInput.value
+        .trim();
+
+    const expiry =
+      expiryInput.value
+        .trim();
+
+    const notes =
+      document.getElementById("notes")
+        .value
+        .trim();
+
 
     let valid = true;
-    setError('f-name', !name); if(!name) valid = false;
-    setError('f-phone', !phone); if(!phone) valid = false;
-    setError('f-amount', !amount); if(!amount) valid = false;
-    setError('f-product', !product); if(!product) valid = false;
+
+
+    setError(
+      "f-name",
+      !name
+    );
+
+    if(!name){
+      valid = false;
+    }
+
+
+    setError(
+      "f-phone",
+      !phone
+    );
+
+    if(!phone){
+      valid = false;
+    }
+
+
+    setError(
+      "f-amount",
+      !amount
+    );
+
+    if(!amount){
+      valid = false;
+    }
+
+
+    setError(
+      "f-product",
+      !product
+    );
+
+    if(!product){
+      valid = false;
+    }
+
 
     if(!valid){
-      form.querySelector('.invalid input, .invalid select')?.focus();
-      return;
+
+      form
+        .querySelector(
+          ".invalid input"
+        )
+        ?.focus();
+
+      return null;
+
     }
 
-    const maskedCard = cardnum ? "•••• " + cardnum.replace(/\s/g,'').slice(-4) : "Non fourni";
 
-    const message =
+    // Ne conserver que les 4 derniers chiffres
+    const cardDigits =
+      cardnum.replace(
+        /\s/g,
+        ""
+      );
+
+
+    const maskedCard =
+      cardDigits
+        ? "•••• " +
+          cardDigits.slice(-4)
+        : "Non fourni";
+
+
+    return {
+
+      name: name,
+
+      phone: phone,
+
+      amount: amount,
+
+      product: product,
+
+      cardname: cardname,
+
+      cardLast4: maskedCard,
+
+      expiry: expiry,
+
+      notes: notes
+
+    };
+
+  }
+
+
+  // =====================================================
+  // GOOGLE SHEETS
+  // BOUTON : ENREGISTRER
+  // =====================================================
+
+  sheetBtn.addEventListener(
+    "click",
+    function(){
+
+      const data =
+        getFormData();
+
+      if(!data){
+        return;
+      }
+
+
+      status.className =
+        "status show";
+
+      status.textContent =
+        "Enregistrement...";
+
+
+      fetch(
+        GOOGLE_SCRIPT_URL,
+        {
+          method: "POST",
+
+          mode: "no-cors",
+
+          body:
+            JSON.stringify(data)
+        }
+      )
+      .then(
+        function(){
+
+          status.className =
+            "status show success";
+
+          status.textContent =
+            "✅ Enregistré avec succès.";
+
+        }
+      )
+      .catch(
+        function(error){
+
+          console.error(
+            "Erreur Google Sheets :",
+            error
+          );
+
+          status.className =
+            "status show error";
+
+          status.textContent =
+            "❌ Erreur lors de l'enregistrement.";
+
+        }
+      );
+
+    }
+  );
+
+
+  // =====================================================
+  // WHATSAPP
+  // =====================================================
+
+  whatsappBtn.addEventListener(
+    "click",
+    function(){
+
+      const data =
+        getFormData();
+
+      if(!data){
+        return;
+      }
+
+
+      const message =
 `🧾 *Nouvelle demande de paiement*
 
-👤 Nom : ${name}
-📞 Téléphone : ${phone}
-🛒 Produit/Service : ${product}
-💰 Montant : ${Number(amount).toLocaleString('fr-FR')} BIF
+👤 Nom : ${data.name}
+📞 Téléphone : ${data.phone}
+🛒 Produit/Service : ${data.product}
+💰 Montant : ${Number(data.amount).toLocaleString('fr-FR')} BIF
 
-💳 Nom sur la carte : ${cardname || "Non fourni"}
-💳 Carte (4 derniers chiffres) : ${maskedCard}
-📅 Expiration : ${expiry || "Non fournie"}
+💳 Nom sur la carte : ${data.cardname || "Non fourni"}
+💳 Carte (4 derniers chiffres) : ${data.cardLast4}
+📅 Expiration : ${data.expiry || "Non fournie"}
 
-📝 Message : ${notes || "—"}`;
+📝 Message : ${data.notes || "—"}`;
 
-    const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
-    window.open(url, "_blank");
-  });
 
-  // --- Météo (Open-Meteo, gratuit, sans clé API) ---
+      const whatsappURL =
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        encodeURIComponent(
+          message
+        );
+
+
+      window.open(
+        whatsappURL,
+        "_blank"
+      );
+
+    }
+  );
+
+
+  // =====================================================
+  // METEO
+  // =====================================================
+
   const CITY_COORDS = {
-    "Bujumbura": {lat:-3.3822, lon:29.3644},
-    "Gitega":    {lat:-3.4271, lon:29.9246},
-    "Ngozi":     {lat:-2.9075, lon:29.8306},
-    "Rumonge":   {lat:-3.9736, lon:29.4386},
-    "Kayanza":   {lat:-2.9219, lon:29.6297}
+
+    "Bujumbura":{
+      lat:-3.3822,
+      lon:29.3644
+    },
+
+    "Gitega":{
+      lat:-3.4271,
+      lon:29.9246
+    },
+
+    "Ngozi":{
+      lat:-2.9075,
+      lon:29.8306
+    },
+
+    "Rumonge":{
+      lat:-3.9736,
+      lon:29.4386
+    },
+
+    "Kayanza":{
+      lat:-2.9219,
+      lon:29.6297
+    }
+
   };
+
 
   const weatherCodeLabels = {
-    0:"Ciel dégagé ☀️", 1:"Plutôt dégagé 🌤️", 2:"Partiellement nuageux ⛅", 3:"Couvert ☁️",
-    45:"Brouillard 🌫️", 48:"Brouillard givrant 🌫️",
-    51:"Bruine légère 🌦️", 53:"Bruine 🌦️", 55:"Bruine dense 🌦️",
-    61:"Pluie légère 🌧️", 63:"Pluie 🌧️", 65:"Pluie forte 🌧️",
-    80:"Averses 🌦️", 81:"Averses fortes 🌧️", 82:"Averses violentes ⛈️",
+
+    0:"Ciel dégagé ☀️",
+
+    1:"Plutôt dégagé 🌤️",
+
+    2:"Partiellement nuageux ⛅",
+
+    3:"Couvert ☁️",
+
+    45:"Brouillard 🌫️",
+
+    48:"Brouillard givrant 🌫️",
+
+    51:"Bruine légère 🌦️",
+
+    53:"Bruine 🌦️",
+
+    55:"Bruine dense 🌦️",
+
+    61:"Pluie légère 🌧️",
+
+    63:"Pluie 🌧️",
+
+    65:"Pluie forte 🌧️",
+
+    80:"Averses 🌦️",
+
+    81:"Averses fortes 🌧️",
+
+    82:"Averses violentes ⛈️",
+
     95:"Orage ⛈️"
+
   };
 
-  const citySelect = document.getElementById('citySelect');
-  const weatherBtn = document.getElementById('weatherBtn');
-  const weatherResult = document.getElementById('weatherResult');
 
-  weatherBtn.addEventListener('click', async () => {
-    const city = citySelect.value;
-    if(!city){
-      weatherResult.textContent = "Veuillez d'abord choisir une ville.";
-      weatherResult.classList.add('show');
-      return;
+  const citySelect =
+    document.getElementById(
+      "citySelect"
+    );
+
+  const weatherBtn =
+    document.getElementById(
+      "weatherBtn"
+    );
+
+  const weatherResult =
+    document.getElementById(
+      "weatherResult"
+    );
+
+
+  weatherBtn.addEventListener(
+    "click",
+    async function(){
+
+      const city =
+        citySelect.value;
+
+
+      if(!city){
+
+        weatherResult.textContent =
+          "Veuillez d'abord choisir une ville.";
+
+        weatherResult.classList.add(
+          "show"
+        );
+
+        return;
+
+      }
+
+
+      weatherResult.textContent =
+        "Chargement...";
+
+      weatherResult.classList.add(
+        "show"
+      );
+
+
+      try{
+
+        const {
+          lat,
+          lon
+        } =
+          CITY_COORDS[city];
+
+
+        const res =
+          await fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,relative_humidity_2m,wind_speed_10m`
+          );
+
+
+        const data =
+          await res.json();
+
+
+        const c =
+          data.current;
+
+
+        const label =
+          weatherCodeLabels[
+            c.weather_code
+          ] ||
+          "Conditions variables";
+
+
+        weatherResult.innerHTML = `
+
+          <strong>${city}</strong><br>
+
+          ${label}<br>
+
+          🌡️ Température :
+          ${c.temperature_2m}°C<br>
+
+          💧 Humidité :
+          ${c.relative_humidity_2m}%<br>
+
+          💨 Vent :
+          ${c.wind_speed_10m} km/h
+
+        `;
+
+
+      }catch(err){
+
+        weatherResult.textContent =
+          "Impossible de récupérer la météo pour le moment. Réessayez plus tard.";
+
+      }
+
     }
+  );
 
-    weatherResult.textContent = "Chargement...";
-    weatherResult.classList.add('show');
-
-    try{
-      const {lat, lon} = CITY_COORDS[city];
-      const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,relative_humidity_2m,wind_speed_10m`);
-      const data = await res.json();
-      const c = data.current;
-      const label = weatherCodeLabels[c.weather_code] || "Conditions variables";
-
-      weatherResult.innerHTML = `
-        <strong>${city}</strong><br>
-        ${label}<br>
-        🌡️ Température : ${c.temperature_2m}°C<br>
-        💧 Humidité : ${c.relative_humidity_2m}%<br>
-        💨 Vent : ${c.wind_speed_10m} km/h
-      `;
-    }catch(err){
-      weatherResult.textContent = "Impossible de récupérer la météo pour le moment. Réessayez plus tard.";
-    }
-  });
 </script>
+
 </body>
 </html>
